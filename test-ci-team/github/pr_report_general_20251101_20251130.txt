@@ -1,0 +1,31 @@
+================================================================================
+GitHub PR Metrics Report
+================================================================================
+Period: 2025-11-01 to 2025-11-30
+Repository: konflux-ci/konflux-ui
+Generated: 2026-01-07 18:54:27
+
+--- PR Summary ---
+Total PRs Merged (team members): 13
+AI Adoption Rate: 61.5%
+AI-Assisted PRs: 8
+Non-AI PRs: 5
+
+--- AI Tool Distribution ---
+Claude PRs: 4
+Cursor PRs: 4
+
+--- Overall Metrics ---
+Avg Time to Merge: 6.35 days
+Avg Time to First Review: 1.73 hours
+Avg Changes Requested: 0.08
+Avg Commits per PR: 2.00
+Avg Reviewers: 3.31
+Avg Reviewers (excl. bots): 2.46
+Avg Comments: 2.62
+Avg Comments (excl. bots & approvals): 2.62
+Avg Lines Added: 416.46
+Avg Lines Deleted: 36.92
+Avg Files Changed: 5.54
+
+================================================================================

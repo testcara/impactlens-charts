@@ -1,0 +1,56 @@
+PR AI Impact Analysis Report - Team Overall
+Report Generated: January 07, 2026
+Repository: konflux-ci/konflux-ui
+
+This report analyzes PR data across multiple periods to evaluate
+the impact of AI tools on development efficiency:
+
+Phase 1: Test Period 1 (2025-10-01 to 2025-10-31)
+Phase 2: Test Period 2 (2025-11-01 to 2025-11-30)
+
+Metric	Test Period 1	Test Period 2
+Analysis Period	31d	30d
+Leave Days	0	0
+Capacity	2.0	2.0
+Total PRs Merged (team members)	13	13
+Daily Throughput (skip leave days)	0.42/d	0.43/d
+Daily Throughput (average per capacity)	0.21/d	0.22/d
+Daily Throughput (average per capacity, excl. leave)	0.21/d	0.22/d
+Daily Throughput	0.42/d	0.43/d
+AI Adoption Rate	69.2%	61.5%
+AI-Assisted PRs	9	8
+Non-AI PRs	4	5
+Claude PRs	4	4
+Cursor PRs	5	4
+Avg Time to Merge per PR (days)	1.72d	5.72d
+Avg Time to First Review per PR (hours)	6.07h	0.09h
+Avg Changes Requested per PR	0.00	0.00
+Avg Commits per PR	1.50	1.80
+Avg Reviewers per PR	3.50	2.80
+Avg Comments per PR	2.25	2.20
+Avg Lines Added per PR	138	76
+Avg Lines Deleted per PR	18	37
+Avg Files Changed per PR	5.50	5.80
+Total Lines Added	1687	5414
+Total Lines Deleted	335	480
+Total Files Changed	49	72
+
+Note: N/A values indicate insufficient data for that metric in the period.
+
+Key Changes:
+
+Top 5 Increases in Metrics:
+• Avg Time to Merge per PR: 1.72d → 5.72d (+232.6% change)
+• Avg Lines Deleted per PR: 17.50 → 36.60 (+109.1% change)
+• Avg Commits per PR: 1.50 → 1.80 (+20.0% change)
+• Avg Files Changed per PR: 5.50 → 5.80 (+5.5% change)
+
+Top 5 Decreases in Metrics:
+• Avg Time to First Review per PR: 6.07h → 0.09h (-98.6% change)
+• Avg Lines Added per PR: 138.00 → 75.80 (-45.1% change)
+• Avg Reviewers per PR: 3.50 → 2.80 (-20.0% change)
+• AI Adoption Rate: 69.23% → 61.54% (-11.1% change)
+• Avg Comments per PR: 2.25 → 2.20 (-2.2% change)
+
+For detailed metric explanations, see:
+https://github.com/testcara/impactlens/blob/master/docs/METRICS_GUIDE.md
