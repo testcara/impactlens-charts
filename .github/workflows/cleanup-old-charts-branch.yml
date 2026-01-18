@@ -114,31 +114,45 @@ jobs:
               echo "   ✓ Keeping latest: $latest_branch (timestamp: $latest_timestamp)"
               ((KEPT_COUNT++))
 
-              # Delete all other branches
+              # Debug: show all branches in this group
+              echo "   📋 All branches in group:"
               for branch in "${branch_array[@]}"; do
+                echo "      - $branch"
+              done
+
+              # Delete all other branches
+              echo "   🔄 Starting deletion loop..."
+              for branch in "${branch_array[@]}"; do
+                echo "   🔍 Processing: $branch"
                 if [[ "$branch" != "$latest_branch" ]]; then
                   if [[ "$DRY_RUN" == "true" ]]; then
-                    echo "   🔍 [DRY RUN] Would delete: $branch"
-                    ((DELETED_COUNT++))
+                    echo "      🔍 [DRY RUN] Would delete: $branch"
+                    ((DELETED_COUNT++)) || true
                   else
-                    echo "   🗑️  Deleting old: $branch"
+                    echo "      🗑️  Deleting old: $branch"
                     DELETE_CMD="gh api -X DELETE \"repos/${{ github.repository }}/git/refs/heads/${branch}\""
-                    echo "   📝 Command: $DELETE_CMD"
+                    echo "      📝 Command: $DELETE_CMD"
 
                     # Capture both stdout and stderr for debugging
-                    if OUTPUT=$(gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${branch}" 2>&1); then
-                      ((DELETED_COUNT++))
-                      echo "   ✓ Deleted successfully"
+                    set +e  # Temporarily disable exit on error
+                    OUTPUT=$(gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${branch}" 2>&1)
+                    EXIT_CODE=$?
+                    set -e  # Re-enable exit on error
+
+                    if [[ $EXIT_CODE -eq 0 ]]; then
+                      ((DELETED_COUNT++)) || true
+                      echo "      ✓ Deleted successfully"
                     else
-                      EXIT_CODE=$?
-                      echo "   ⚠️  Failed to delete $branch"
-                      echo "   ❌ Exit code: $EXIT_CODE"
-                      echo "   ❌ Output: $OUTPUT"
-                      # Don't fail the whole workflow, just continue
+                      echo "      ⚠️  Failed to delete $branch"
+                      echo "      ❌ Exit code: $EXIT_CODE"
+                      echo "      ❌ Output: $OUTPUT"
                     fi
                   fi
+                else
+                  echo "      ⏭️  Skipping (latest): $branch"
                 fi
               done
+              echo "   ✅ Deletion loop completed"
             fi
             echo ""
           done
