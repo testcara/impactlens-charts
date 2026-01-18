@@ -6,15 +6,15 @@ name: Cleanup Old Chart Branches
 on:
   # Run daily at 2 AM UTC
   schedule:
-    - cron: '0 2 * * *'
+    - cron: "0 2 * * *"
 
   # Allow manual trigger
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Dry run (only show what would be deleted)'
+        description: "Dry run (only show what would be deleted)"
         required: false
-        default: 'false'
+        default: "false"
 
 jobs:
   cleanup:
@@ -102,27 +102,27 @@ jobs:
 
             for branch in "${branch_array[@]}"; do
               if [[ "$branch" =~ -([0-9]+)$ ]]; then
-                echo "hi1....."
                 timestamp="${BASH_REMATCH[1]}"
                 echo $timestamp
-                echo "-----"
                 if [[ $timestamp -gt $latest_timestamp ]]; then
                   latest_timestamp=$timestamp
                   latest_branch="$branch"
                 fi
               fi
             done
-            echo "hi2-----"
 
             if [[ -n "$latest_branch" ]]; then
               echo "   ✓ Keeping latest: $latest_branch (timestamp: $latest_timestamp)"
               ((KEPT_COUNT++))
+              echo "3----"
 
               # Debug: show all branches in this group
               echo "   📋 All branches in group:"
               for branch in "${branch_array[@]}"; do
                 echo "      - $branch"
               done
+
+              echo "4----"
 
               # Delete all other branches
               echo "   🔄 Starting deletion loop..."
