@@ -119,11 +119,19 @@ jobs:
                     ((DELETED_COUNT++))
                   else
                     echo "   🗑️  Deleting old: $branch"
-                    if gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${branch}" 2>/dev/null; then
+                    DELETE_CMD="gh api -X DELETE \"repos/${{ github.repository }}/git/refs/heads/${branch}\""
+                    echo "   📝 Command: $DELETE_CMD"
+
+                    # Capture both stdout and stderr for debugging
+                    if OUTPUT=$(gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${branch}" 2>&1); then
                       ((DELETED_COUNT++))
                       echo "   ✓ Deleted successfully"
                     else
+                      EXIT_CODE=$?
                       echo "   ⚠️  Failed to delete $branch"
+                      echo "   ❌ Exit code: $EXIT_CODE"
+                      echo "   ❌ Output: $OUTPUT"
+                      # Don't fail the whole workflow, just continue
                     fi
                   fi
                 fi
