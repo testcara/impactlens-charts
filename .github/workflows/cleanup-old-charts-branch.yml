@@ -102,13 +102,17 @@ jobs:
 
             for branch in "${branch_array[@]}"; do
               if [[ "$branch" =~ -([0-9]+)$ ]]; then
+                echo "hi1....."
                 timestamp="${BASH_REMATCH[1]}"
+                echo $timestamp
+                echo "-----"
                 if [[ $timestamp -gt $latest_timestamp ]]; then
                   latest_timestamp=$timestamp
                   latest_branch="$branch"
                 fi
               fi
             done
+            echo "hi2-----"
 
             if [[ -n "$latest_branch" ]]; then
               echo "   ✓ Keeping latest: $latest_branch (timestamp: $latest_timestamp)"
