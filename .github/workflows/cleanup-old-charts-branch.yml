@@ -80,7 +80,9 @@ jobs:
 
           for prefix in "${!branch_groups[@]}"; do
             branches="${branch_groups[$prefix]}"
-            branch_array=($branches)
+
+            # Convert space-separated string to array safely
+            IFS=' ' read -ra branch_array <<< "$branches"
             branch_count=${#branch_array[@]}
 
             if [[ $branch_count -le 1 ]]; then
@@ -117,8 +119,9 @@ jobs:
                     ((DELETED_COUNT++))
                   else
                     echo "   🗑️  Deleting old: $branch"
-                    if gh api -X DELETE repos/${{ github.repository }}/git/refs/heads/${branch} 2>/dev/null; then
+                    if gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${branch}" 2>/dev/null; then
                       ((DELETED_COUNT++))
+                      echo "   ✓ Deleted successfully"
                     else
                       echo "   ⚠️  Failed to delete $branch"
                     fi
