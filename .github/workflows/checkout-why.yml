@@ -1,0 +1,16 @@
+name: Gemini Data Analysis
+
+on:
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  test12:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: test12
+        run: |
+          echo "🧹 Cleaning up old chart branches..."
