@@ -1,0 +1,156 @@
+# Automatically cleanup old chart branches
+# Keeps only the latest branch for each team-report-type combination
+
+name: Cleanup Old Chart Branches
+
+on:
+  # Run daily at 2 AM UTC
+  schedule:
+    - cron: '0 2 * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (only show what would be deleted)'
+        required: false
+        default: 'false'
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Cleanup old chart branches
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          echo "🧹 Cleaning up old chart branches..."
+          if [[ "$DRY_RUN" == "true" ]]; then
+            echo "🔍 DRY RUN MODE - No branches will be deleted"
+          fi
+          echo ""
+
+          # Fetch all branches
+          ALL_BRANCHES=$(gh api repos/${{ github.repository }}/branches --paginate --jq '.[].name')
+
+          TOTAL_BRANCHES=$(echo "$ALL_BRANCHES" | wc -l)
+          echo "📊 Total branches found: $TOTAL_BRANCHES"
+          echo ""
+
+          # Group branches by prefix (team-name + report-type)
+          # Format: test-ci-team2-pr-local-21060232326
+          # Prefix: test-ci-team2-pr-local (everything before the timestamp)
+          declare -A branch_groups
+
+          while IFS= read -r branch; do
+            # Skip protected branches
+            if [[ "$branch" == "main" ]] || [[ "$branch" == "master" ]]; then
+              echo "⏭️  Skipping protected branch: $branch"
+              continue
+            fi
+
+            # Extract prefix by removing the timestamp suffix
+            # Assumes the last component after the last hyphen is a timestamp (numeric)
+            if [[ "$branch" =~ ^(.+)-([0-9]+)$ ]]; then
+              prefix="${BASH_REMATCH[1]}"
+              timestamp="${BASH_REMATCH[2]}"
+
+              # Store branch with its prefix
+              if [[ -z "${branch_groups[$prefix]}" ]]; then
+                branch_groups[$prefix]="$branch"
+              else
+                branch_groups[$prefix]="${branch_groups[$prefix]} $branch"
+              fi
+            else
+              echo "⏭️  Skipping branch (no timestamp pattern): $branch"
+            fi
+          done <<< "$ALL_BRANCHES"
+
+          PREFIX_COUNT=${#branch_groups[@]}
+          echo "📁 Found $PREFIX_COUNT unique branch prefix groups"
+          echo ""
+
+          # For each prefix, keep only the latest branch (highest timestamp)
+          DELETED_COUNT=0
+          KEPT_COUNT=0
+
+          for prefix in "${!branch_groups[@]}"; do
+            branches="${branch_groups[$prefix]}"
+
+            # Convert space-separated string to array safely
+            IFS=' ' read -ra branch_array <<< "$branches"
+            branch_count=${#branch_array[@]}
+
+            if [[ $branch_count -le 1 ]]; then
+              echo "✓ $prefix: Only 1 branch, keeping ${branch_array[0]}"
+              ((KEPT_COUNT++))
+              continue
+            fi
+
+            echo "🔍 $prefix: Found $branch_count branches"
+
+            # Sort branches by timestamp (extract numeric suffix and sort)
+            latest_branch=""
+            latest_timestamp=0
+
+            for branch in "${branch_array[@]}"; do
+              if [[ "$branch" =~ -([0-9]+)$ ]]; then
+                timestamp="${BASH_REMATCH[1]}"
+                if [[ $timestamp -gt $latest_timestamp ]]; then
+                  latest_timestamp=$timestamp
+                  latest_branch="$branch"
+                fi
+              fi
+            done
+
+            if [[ -n "$latest_branch" ]]; then
+              echo "   ✓ Keeping latest: $latest_branch (timestamp: $latest_timestamp)"
+              ((KEPT_COUNT++))
+
+              # Delete all other branches
+              for branch in "${branch_array[@]}"; do
+                if [[ "$branch" != "$latest_branch" ]]; then
+                  if [[ "$DRY_RUN" == "true" ]]; then
+                    echo "   🔍 [DRY RUN] Would delete: $branch"
+                    ((DELETED_COUNT++))
+                  else
+                    echo "   🗑️  Deleting old: $branch"
+                    DELETE_CMD="gh api -X DELETE \"repos/${{ github.repository }}/git/refs/heads/${branch}\""
+                    echo "   📝 Command: $DELETE_CMD"
+
+                    # Capture both stdout and stderr for debugging
+                    if OUTPUT=$(gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${branch}" 2>&1); then
+                      ((DELETED_COUNT++))
+                      echo "   ✓ Deleted successfully"
+                    else
+                      EXIT_CODE=$?
+                      echo "   ⚠️  Failed to delete $branch"
+                      echo "   ❌ Exit code: $EXIT_CODE"
+                      echo "   ❌ Output: $OUTPUT"
+                      # Don't fail the whole workflow, just continue
+                    fi
+                  fi
+                fi
+              done
+            fi
+            echo ""
+          done
+
+          echo ""
+          echo "=========================================="
+          if [[ "$DRY_RUN" == "true" ]]; then
+            echo "🔍 DRY RUN completed (no actual deletions)"
+          else
+            echo "✅ Cleanup completed"
+          fi
+          echo "=========================================="
+          echo "📊 Statistics:"
+          echo "   - Total branches checked: $TOTAL_BRANCHES"
+          echo "   - Branch groups found: $PREFIX_COUNT"
+          echo "   - Branches kept: $KEPT_COUNT"
+          echo "   - Branches deleted: $DELETED_COUNT"
+          echo "=========================================="
