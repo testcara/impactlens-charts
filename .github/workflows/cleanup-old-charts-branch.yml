@@ -6,15 +6,15 @@ name: Cleanup Old Chart Branches
 on:
   # Run daily at 2 AM UTC
   schedule:
-    - cron: '0 2 * * *'
+    - cron: "0 2 * * *"
 
   # Allow manual trigger
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Dry run (only show what would be deleted)'
+        description: "Dry run (only show what would be deleted)"
         required: false
-        default: 'false'
+        default: "false"
 
 jobs:
   cleanup:
@@ -87,7 +87,7 @@ jobs:
 
             if [[ $branch_count -le 1 ]]; then
               echo "✓ $prefix: Only 1 branch, keeping ${branch_array[0]}"
-              ((KEPT_COUNT++))
+              KEPT_COUNT=$((KEPT_COUNT + 1))
               continue
             fi
 
@@ -100,6 +100,7 @@ jobs:
             for branch in "${branch_array[@]}"; do
               if [[ "$branch" =~ -([0-9]+)$ ]]; then
                 timestamp="${BASH_REMATCH[1]}"
+                echo $timestamp
                 if [[ $timestamp -gt $latest_timestamp ]]; then
                   latest_timestamp=$timestamp
                   latest_branch="$branch"
@@ -109,33 +110,47 @@ jobs:
 
             if [[ -n "$latest_branch" ]]; then
               echo "   ✓ Keeping latest: $latest_branch (timestamp: $latest_timestamp)"
-              ((KEPT_COUNT++))
+              KEPT_COUNT=$((KEPT_COUNT + 1))
+
+              # Debug: show all branches in this group
+              echo "   📋 All branches in group:"
+              for branch in "${branch_array[@]}"; do
+                echo "      - $branch"
+              done
 
               # Delete all other branches
+              echo "   🔄 Starting deletion loop..."
               for branch in "${branch_array[@]}"; do
+                echo "   🔍 Processing: $branch"
                 if [[ "$branch" != "$latest_branch" ]]; then
                   if [[ "$DRY_RUN" == "true" ]]; then
-                    echo "   🔍 [DRY RUN] Would delete: $branch"
-                    ((DELETED_COUNT++))
+                    echo "      🔍 [DRY RUN] Would delete: $branch"
+                    ((DELETED_COUNT++)) || true
                   else
-                    echo "   🗑️  Deleting old: $branch"
+                    echo "      🗑️  Deleting old: $branch"
                     DELETE_CMD="gh api -X DELETE \"repos/${{ github.repository }}/git/refs/heads/${branch}\""
-                    echo "   📝 Command: $DELETE_CMD"
+                    echo "      📝 Command: $DELETE_CMD"
 
                     # Capture both stdout and stderr for debugging
-                    if OUTPUT=$(gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${branch}" 2>&1); then
-                      ((DELETED_COUNT++))
-                      echo "   ✓ Deleted successfully"
+                    set +e  # Temporarily disable exit on error
+                    OUTPUT=$(gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${branch}" 2>&1)
+                    EXIT_CODE=$?
+                    set -e  # Re-enable exit on error
+
+                    if [[ $EXIT_CODE -eq 0 ]]; then
+                      ((DELETED_COUNT++)) || true
+                      echo "      ✓ Deleted successfully"
                     else
-                      EXIT_CODE=$?
-                      echo "   ⚠️  Failed to delete $branch"
-                      echo "   ❌ Exit code: $EXIT_CODE"
-                      echo "   ❌ Output: $OUTPUT"
-                      # Don't fail the whole workflow, just continue
+                      echo "      ⚠️  Failed to delete $branch"
+                      echo "      ❌ Exit code: $EXIT_CODE"
+                      echo "      ❌ Output: $OUTPUT"
                     fi
                   fi
+                else
+                  echo "      ⏭️  Skipping (latest): $branch"
                 fi
               done
+              echo "   ✅ Deletion loop completed"
             fi
             echo ""
           done
