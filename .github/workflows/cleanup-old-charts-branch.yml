@@ -28,6 +28,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
         run: |
+          # Enable verbose output for debugging
+          set -x
+
           echo "🧹 Cleaning up old chart branches..."
           if [[ "$DRY_RUN" == "true" ]]; then
             echo "🔍 DRY RUN MODE - No branches will be deleted"
