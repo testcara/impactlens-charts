@@ -1,0 +1,329 @@
+I need you to analyze this engineering metrics report and provide actionable insights.
+
+## REPORT INFORMATION
+- **File**: combined_jira_report_20251215_042050.tsv
+- **Type**: JIRA Metrics Report
+- **Phases**: No AI Period, Cursor Period, Full AI Period
+- **Metrics**: 22 tracked
+
+## FULL REPORT DATA
+
+```
+Jira AI Impact Analysis - Combined Report (Grouped by Metric)
+Generated: December 15, 2025
+Project: Konflux UI
+
+This report compares JIRA metrics across different time periods
+to evaluate the impact of AI tools on development workflow.
+
+Phase 1: No AI Period
+Phase 2: Cursor Period
+Phase 3: Full AI Period
+
+
+=== Analysis Period ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	151d	151d	151d	151d	151d	151d	151d	151d	151d	151d	151d	151d
+Cursor Period	61d	61d	61d	61d	61d	61d	61d	61d	61d	61d	61d	61d
+Full AI Period	126d	126d	126d	126d	126d	126d	126d	126d	126d	126d	126d	126d
+
+=== Total Issues Completed ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	100	24	11	18	12	5	10	3	5	0	8	4
+Cursor Period	107	20	22	12	2	4	11	6	12	11	0	7
+Full AI Period	157	26	18	13	1	5	13	17	15	25	12	12
+
+=== Average Closure Time ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	78.69d	25.33d	35.81d	57.91d	91.69d	43.46d	125.66d	61.47d	177.03d	0.00d	186.50d	172.16d
+Cursor Period	75.64d	34.00d	65.82d	107.03d	119.93d	351.68d	184.38d	23.65d	55.87d	2.28d	0.00d	24.04d
+Full AI Period	65.73d	44.44d	17.06d	51.41d	294.27d	317.10d	53.73d	33.26d	69.12d	88.48d	121.75d	28.00d
+
+=== Longest Closure Time ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	633.78d	101.19d	173.85d	201.83d	316.02d	71.11d	336.31d	139.36d	633.78d	0.00d	603.75d	475.80d
+Cursor Period	853.72d	133.17d	613.04d	291.98d	181.80d	853.72d	607.83d	57.03d	339.96d	8.46d	0.00d	89.44d
+Full AI Period	904.99d	185.20d	40.87d	190.03d	294.27d	769.26d	190.72d	124.15d	395.49d	904.99d	322.98d	58.04d
+
+=== Daily Throughput (skip leave days) ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	0.80/d	0.19/d	0.07/d	0.12/d	0.08/d	0.03/d	0.07/d	0.02/d	0.03/d	0.00/d	0.05/d	0.03/d
+Cursor Period	2.61/d	0.49/d	0.36/d	0.20/d	0.03/d	0.07/d	0.18/d	0.10/d	0.20/d	0.18/d	0.00/d	0.11/d
+Full AI Period	1.37/d	0.23/d	0.14/d	0.10/d	0.01/d	0.04/d	0.10/d	0.13/d	0.12/d	0.20/d	0.10/d	0.10/d
+
+=== Daily Throughput (based on capacity) ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	0.06/d	0.20/d	0.07/d	0.12/d	0.08/d	0.03/d	0.07/d	0.02/d	0.03/d	0.00/d	0.11/d	0.03/d
+Cursor Period	0.18/d	0.41/d	0.36/d	0.20/d	0.07/d	0.07/d	0.18/d	0.10/d	0.20/d	0.18/d	0.00/d	0.11/d
+Full AI Period	0.13/d	0.26/d	0.14/d	0.10/d	0.00/d	0.04/d	0.10/d	0.13/d	0.12/d	0.20/d	0.19/d	0.10/d
+
+=== Daily Throughput (considering leave days + capacity) ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	0.08/d	0.24/d	0.07/d	0.12/d	0.08/d	0.03/d	0.07/d	0.02/d	0.03/d	0.00/d	0.11/d	0.03/d
+Cursor Period	0.27/d	0.61/d	0.36/d	0.20/d	0.07/d	0.07/d	0.18/d	0.10/d	0.20/d	0.18/d	0.00/d	0.11/d
+Full AI Period	0.15/d	0.28/d	0.14/d	0.10/d	0.00/d	0.04/d	0.10/d	0.13/d	0.12/d	0.20/d	0.19/d	0.10/d
+
+=== Daily Throughput ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	0.66/d	0.16/d	0.07/d	0.12/d	0.08/d	0.03/d	0.07/d	0.02/d	0.03/d	0.00/d	0.05/d	0.03/d
+Cursor Period	1.75/d	0.33/d	0.36/d	0.20/d	0.03/d	0.07/d	0.18/d	0.10/d	0.20/d	0.18/d	0.00/d	0.11/d
+Full AI Period	1.25/d	0.21/d	0.14/d	0.10/d	0.01/d	0.04/d	0.10/d	0.13/d	0.12/d	0.20/d	0.10/d	0.10/d
+
+=== New State Avg Time ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	12.31d	2.47d	7.58d	15.26d	11.56d	4.44d	31.56d	2.35d	21.58d	N/A	26.14d	3.20d
+Cursor Period	15.02d	8.75d	22.60d	11.94d	0.63d	44.92d	36.65d	2.40d	11.54d	0.00d	N/A	7.77d
+Full AI Period	27.14d	24.06d	3.10d	18.01d	177.97d	36.60d	27.24d	12.49d	41.58d	31.71d	78.07d	5.44d
+
+=== To Do State Avg Time ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	41.30d	12.83d	3.03d	26.75d	18.56d	6.52d	52.26d	3.35d	13.35d	N/A	161.05d	187.50d
+Cursor Period	35.72d	16.41d	22.18d	45.68d	5.47d	46.45d	123.16d	8.59d	21.98d	1.55d	N/A	0.48d
+Full AI Period	24.27d	19.20d	0.72d	4.67d	0.00d	243.71d	8.85d	12.79d	5.79d	34.50d	46.12d	5.84d
+
+=== In Progress State Avg Time ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	22.44d	4.66d	5.76d	26.19d	67.56d	19.61d	8.23d	11.67d	8.55d	N/A	47.28d	38.10d
+Cursor Period	11.46d	9.21d	4.85d	27.60d	12.76d	8.31d	18.04d	9.63d	15.60d	2.56d	N/A	6.59d
+Full AI Period	12.44d	10.26d	7.26d	28.19d	115.15d	22.23d	6.19d	11.22d	7.47d	14.41d	9.48d	11.80d
+
+=== Review State Avg Time ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	17.27d	19.28d	15.19d	9.89d	18.94d	17.29d	23.54d	4.69d	12.53d	N/A	3.09d	34.16d
+Cursor Period	11.65d	9.24d	8.54d	35.03d	25.82d	0.29d	12.86d	7.33d	7.14d	3.05d	N/A	11.09d
+Full AI Period	14.46d	10.57d	7.83d	14.58d	1.15d	57.62d	17.55d	3.85d	17.22d	12.47d	56.83d	13.71d
+
+=== Release Pending State Avg Time ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	15.19d	18.95d	9.05d	7.38d	16.92d	0.01d	15.87d	26.98d	27.31d	N/A	N/A	9.25d
+Cursor Period	11.83d	7.66d	10.77d	37.17d	7.49d	9.84d	7.52d	21.20d	11.97d	N/A	N/A	12.89d
+Full AI Period	8.11d	7.66d	5.98d	19.98d	N/A	4.37d	8.61d	1.74d	8.85d	6.64d	N/A	10.49d
+
+=== Waiting State Avg Time ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	32.20d	3.85d	140.90d	N/A	6.32d	N/A	30.49d	7.05d	24.54d	N/A	26.76d	N/A
+Cursor Period	80.45d	14.30d	132.73d	63.58d	71.33d	126.12d	75.84d	N/A	155.57d	N/A	N/A	0.23d
+Full AI Period	97.44d	13.93d	N/A	23.05d	N/A	129.12d	N/A	N/A	48.21d	161.44d	155.91d	N/A
+
+=== To Do Re-entry Rate ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	1.34x	1.30x	1.00x	1.09x	1.50x	1.00x	2.11x	1.00x	1.00x	N/A	1.33x	1.00x
+Cursor Period	1.00x	1.12x	1.16x	1.33x	1.50x	2.00x	1.62x	1.00x	1.38x	1.00x	N/A	1.00x
+Full AI Period	1.16x	1.00x	1.00x	1.00x	1.00x	1.67x	1.12x	1.60x	1.00x	1.13x	1.00x	1.00x
+
+=== In Progress Re-entry Rate ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	1.16x	1.00x	1.00x	1.07x	1.00x	1.40x	1.00x	1.00x	1.00x	N/A	1.33x	1.50x
+Cursor Period	1.03x	1.30x	1.00x	1.09x	1.00x	1.00x	1.00x	1.17x	1.11x	1.00x	N/A	1.43x
+Full AI Period	1.12x	1.00x	1.17x	1.00x	2.00x	1.20x	1.00x	1.73x	1.00x	1.00x	1.00x	1.00x
+
+=== Review Re-entry Rate ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	1.06x	1.00x	1.00x	1.00x	1.14x	1.25x	1.00x	1.00x	1.00x	N/A	1.12x	1.00x
+Cursor Period	1.12x	1.18x	1.00x	1.00x	1.50x	1.25x	1.22x	1.00x	1.00x	1.00x	N/A	1.50x
+Full AI Period	1.08x	1.05x	1.00x	1.17x	1.00x	1.33x	1.00x	1.38x	1.08x	1.00x	1.00x	1.00x
+
+=== Waiting Re-entry Rate ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	1.11x	1.33x	2.00x	N/A	1.09x	N/A	1.20x	1.00x	1.00x	N/A	1.00x	N/A
+Cursor Period	1.21x	1.00x	1.50x	1.00x	1.50x	1.00x	1.00x	N/A	2.00x	N/A	N/A	1.00x
+Full AI Period	1.00x	1.00x	N/A	1.00x	N/A	1.00x	N/A	N/A	1.00x	1.00x	1.00x	N/A
+
+=== Story Percentage ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	49.00%	54.20%	45.50%	55.60%	41.70%	80.00%	40.00%	66.70%	60.00%	0.00%	0.00%	75.00%
+Cursor Period	40.20%	35.00%	36.40%	50.00%	100.00%	50.00%	54.50%	66.70%	50.00%	0.00%	0.00%	28.60%
+Full AI Period	37.60%	42.30%	22.20%	61.50%	0.00%	0.00%	53.80%	52.90%	53.30%	20.00%	0.00%	58.30%
+
+=== Task Percentage ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	26.00%	20.80%	45.50%	22.20%	25.00%	0.00%	20.00%	0.00%	0.00%	0.00%	87.50%	0.00%
+Cursor Period	31.80%	50.00%	31.80%	25.00%	0.00%	50.00%	0.00%	16.70%	16.70%	81.80%	0.00%	0.00%
+Full AI Period	33.80%	42.30%	27.80%	7.70%	100.00%	60.00%	30.80%	23.50%	33.30%	36.00%	83.30%	0.00%
+
+=== Bug Percentage ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	20.00%	25.00%	9.10%	11.10%	25.00%	20.00%	30.00%	33.30%	20.00%	0.00%	12.50%	25.00%
+Cursor Period	20.60%	10.00%	22.70%	8.30%	0.00%	0.00%	36.40%	16.70%	16.70%	18.20%	0.00%	71.40%
+Full AI Period	20.40%	0.00%	50.00%	0.00%	0.00%	40.00%	15.40%	17.60%	0.00%	36.00%	16.70%	41.70%
+
+=== Epic Percentage ===
+Phase	team	Developer-0EDB	Developer-103E	Developer-1AC5	Developer-2F1C	Developer-87ED	Developer-B7F5	Developer-C05B	Developer-D188	Developer-D90C	Developer-EB07	Developer-F996
+No AI Period	3.00%	0.00%	0.00%	11.10%	8.30%	0.00%	0.00%	0.00%	0.00%	0.00%	0.00%	0.00%
+Cursor Period	7.50%	5.00%	9.10%	16.70%	0.00%	0.00%	9.10%	0.00%	16.70%	0.00%	0.00%	0.00%
+Full AI Period	8.30%	15.40%	0.00%	30.80%	0.00%	0.00%	0.00%	5.90%	13.30%	8.00%	0.00%	0.00%
+
+```
+
+## PREPROCESSED SUMMARY
+
+Report Type: JIRA
+Analysis Phases: No AI Period, Cursor Period, Full AI Period
+Total Metrics Tracked: 22
+
+=== TEAM-LEVEL KEY METRICS (Across Phases) ===
+
+--- Total Issues Completed ---
+No AI Period: 100
+Cursor Period: 107
+Full AI Period: 157
+Trend: ↑ Increased by 57.0%
+
+--- Average Closure Time ---
+No AI Period: 78.69d
+Cursor Period: 75.64d
+Full AI Period: 65.73d
+Trend: ↓ Decreased by 16.5%
+
+--- Daily Throughput (considering leave days + capacity) ---
+No AI Period: 0.08/d
+Cursor Period: 0.27/d
+Full AI Period: 0.15/d
+
+--- In Progress State Avg Time ---
+No AI Period: 22.44d
+Cursor Period: 11.46d
+Full AI Period: 12.44d
+Trend: ↓ Decreased by 44.6%
+
+--- Review State Avg Time ---
+No AI Period: 17.27d
+Cursor Period: 11.65d
+Full AI Period: 14.46d
+Trend: ↓ Decreased by 16.3%
+
+--- Review Re-entry Rate ---
+No AI Period: 1.06x
+Cursor Period: 1.12x
+Full AI Period: 1.08x
+Trend: Stable
+
+--- Bug Percentage ---
+No AI Period: 20.00%
+Cursor Period: 20.60%
+Full AI Period: 20.40%
+Trend: Stable
+
+
+## ANALYSIS REQUIREMENTS
+
+Please provide a comprehensive analysis with the following sections:
+
+### 1. KEY TRENDS (3-5 key insights)
+Identify the most significant changes across AI adoption phases
+- IMPORTANT: When comparing productivity across phases, ONLY use Daily Throughput (PRs/day or Issues/day), NEVER compare raw volumes from different time periods!
+- What metrics improved or declined significantly comparing No AI Period (baseline) vs AI-enabled periods?
+- How do metrics evolve across different AI tool combinations/phases?
+- Analyze throughput vs cycle time together: If throughput increased but cycle time also increased, is this actually a problem or a sign of higher parallelism?
+- What patterns stand out across team members in each phase?
+- Are there any surprising trends or counter-intuitive findings?
+- Which metrics show the strongest positive/negative correlation with AI tool usage?
+
+### 2. BOTTLENECKS & RISKS (2-3 critical items)
+Highlight concerning patterns and AI adoption risks
+- What areas could slow down development in each AI adoption phase?
+- What metrics indicate potential problems or negative AI impacts?
+- Are there team members struggling with AI tool adoption?
+- What risks should leadership address immediately?
+- Are there any metrics that got WORSE with AI adoption?
+
+### 3. ACTIONABLE RECOMMENDATIONS (2-3 concrete action items)
+Provide specific, high-impact recommendations for optimizing AI tool usage
+- What should the team do differently to maximize AI tool benefits?
+- Should we adjust AI tool combinations or adoption strategies?
+- Are there best practices from high-performing AI adopters to share?
+- Include measurable goals where possible (e.g., 'reduce merge time by X%')
+- Prioritize feasible improvements with clear ROI
+- Be specific about WHO should do WHAT (individuals, teams, or leadership)
+
+### 4. WORKFLOW EFFICIENCY ANALYSIS
+- CRITICAL: Compare PRODUCTIVITY using Daily Throughput (Issues/day) ONLY - never use raw issue counts from different time periods!
+- How efficiently are issues moving through the workflow?
+- Identify workflow bottlenecks and state transition issues
+- Are there states where issues get stuck?
+- How can we optimize the issue flow?
+
+## OUTPUT FORMAT
+
+Please structure your analysis with START with an EXECUTIVE SUMMARY section at the very top (before any numbered sections):
+
+## EXECUTIVE SUMMARY
+
+**Overall AI Impact**: [POSITIVE/NEGATIVE/MIXED] [brief qualifier]
+
+✅ **Major Wins**: [2-3 key improvements with specific metrics]
+⚠️ **Critical Risks**: [2-3 key concerns]
+🎯 **Biggest Opportunity**: [Single highest-impact improvement area]
+
+[1-2 paragraph narrative summary of overall findings]
+
+---
+
+THEN provide the numbered sections as defined above.
+
+IMPORTANT: DO NOT add a "Summary" or "Conclusion" section at the end!
+The EXECUTIVE SUMMARY at the top is sufficient. End with the last numbered section.
+.
+Focus on:
+- Business impact: How does this affect delivery speed and quality?
+- Concrete actions: What specific steps should be taken?
+- Data-driven insights: Back up observations with specific metric changes
+
+Tone: Professional but accessible tone suitable for engineering leadership
+
+## ADDITIONAL FOCUS
+
+CRITICAL: DATA ACCURACY REQUIREMENTS
+- The report uses TSV format with columns: Phase, team, [individual team members]
+- ALWAYS verify you are reading the correct column for each team member
+- When citing individual metrics, DOUBLE-CHECK the column position matches the member name
+- Example: If columns are "Phase team JoaoPedroPP Katka92 ... rakshett rrosatti sahil143"
+  and data is "15.92d 20.48d ... 59.36d 15.82d 8.32d", then:
+  - rakshett = 59.36d (NOT rrosatti)
+  - rrosatti = 15.82d (NOT sahil143)
+  - sahil143 = 8.32d
+
+CRITICAL: METRIC INTERPRETATION REQUIREMENTS
+
+1. VOLUME vs THROUGHPUT COMPARISON:
+- NEVER compare raw volumes across different time periods!
+- ALWAYS use daily/normalized rates when comparing periods of different lengths
+- Example of WRONG comparison:
+  * No AI: 146 issues (220 days) vs Full AI: 120 issues (100 days)
+  * WRONG conclusion: "Volume dropped 18%" ❌
+- Example of CORRECT comparison:
+  * No AI: 146 ÷ 220 = 0.66 issues/day
+  * Full AI: 120 ÷ 100 = 1.20 issues/day
+  * CORRECT conclusion: "Daily throughput increased 82%" ✅
+- The report already provides "Daily Throughput" metrics - USE THOSE for comparisons!
+
+2. THROUGHPUT vs CYCLE TIME:
+- "Daily Throughput" = PRs/Issues completed per day = PRODUCTIVITY (higher is better)
+- "Avg Time to Merge/Closure" = Days from creation to completion = CYCLE TIME (individual lifecycle)
+- These metrics can move in OPPOSITE directions and both be positive:
+  * High throughput + longer cycle time = More parallel work, higher WIP
+  * Example: 0.66/d → 1.10/d (+67% throughput) + 13d → 17d merge time
+    → Team is MORE productive (completing more), but individual items take longer
+       (possibly due to more parallel work, CI queues, or deployment windows)
+
+3. REVIEW METRICS:
+- "Time to First Review" = Initial review responsiveness (lower is better)
+- DO NOT confuse "cycle time" with "review speed" - they measure different things!
+- When throughput increases but cycle time also increases, analyze WHY:
+  * More parallel work in flight?
+  * CI/deployment bottlenecks?
+  * Longer lifecycle but faster actual review?
+  * More iterations/improvements per item?
+
+IMPORTANT CONTEXT:
+- Only "No AI Period" represents development WITHOUT any AI tools (baseline)
+- All other periods use AI tools, just different combinations/levels
+- Analyze the PROGRESSION of AI tool adoption and its impact
+
+Pay special attention to:
+- Baseline comparison: No AI Period vs. any AI-enabled period
+- Evolution analysis: How metrics change as AI tool combinations evolve
+- Tool effectiveness: Which specific AI tool combinations work best
+- Individual adoption patterns: Who adapts well to different AI tools
+- Diminishing returns: Is more AI always better, or is there an optimal combination?
+

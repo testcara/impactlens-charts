@@ -1,16 +1,59 @@
 name: Gemini Data Analysis
 
 on:
-  # Allow manual trigger
   workflow_dispatch:
+    inputs:
+      prompt_file:
+        description: "Path to the prompt file (relative to repo root)"
+        required: true
+        default: ".github/prompts/prompt.txt"
+      output_file:
+        description: "Path to save Gemini output"
+        required: true
+        default: "gemini_output.txt"
 
 jobs:
-  test12:
+  analyze:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}  # 必填，使用 Gemini API Key
     steps:
-      - name: test12
+      # 1️⃣ Checkout 仓库
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ 读取 prompt 文件，运行 Gemini CLI
+      - name: Run Gemini CLI analysis
+        id: gemini
         run: |
-          echo "🧹 Cleaning up old chart branches..."
+          # 读取文件内容
+          PROMPT=$(cat "${{ github.event.inputs.prompt_file }}")
+
+          # 调用 Gemini CLI，自动接受操作 (-y)，输出纯文本 (-o text)
+          OUTPUT=$(npx @google/gemini-cli "$PROMPT" -y -o text)
+
+          # 打印到日志
+          echo "📝 Gemini says:"
+          echo "$OUTPUT"
+
+          # 保存到输出文件
+          echo "$OUTPUT" > "${{ github.event.inputs.output_file }}"
+
+          # 设置 workflow 输出变量
+          echo "result<<EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # 3️⃣ 可选：再次引用输出
+      - name: Confirm output
+        run: |
+          echo "Captured output (first 200 chars):"
+          echo "${{ steps.gemini.outputs.result }}" | head -c 200
+
+      # 4️⃣ 上传 Gemini 输出作为 Artifact
+      - name: Upload Gemini output
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemini-output
+          path: "${{ github.event.inputs.output_file }}"
+
